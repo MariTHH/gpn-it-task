@@ -1,33 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import Table from './components/Table';
-import Pagination from './components/Pagination';
+import React from 'react';
+import './Pagination.css';
 
-const App = () => {
-    const [data, setData] = useState([]);
-    const [page, setPage] = useState(1);
-    const [total, setTotal] = useState(0);
-    const pageSize = 10;
+const Pagination = ({ total, pageSize, currentPage, onPageChange }) => {
+    const totalPages = Math.ceil(total / pageSize);
+    const maxPageButtons = 10;
+    const pageRange = [];
 
-    useEffect(() => {
-        fetch(`http://127.0.0.1:8085/api/data?page=${page}&pageSize=${pageSize}`)
-            .then(response => response.json())
-            .then(data => {
-                setData(data.data);
-                setTotal(data.total);
-            });
-    }, [page]);
+    let startPage = Math.max(currentPage - Math.floor(maxPageButtons / 2), 1);
+    let endPage = startPage + maxPageButtons - 1;
+
+    if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(endPage - maxPageButtons + 1, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        pageRange.push(i);
+    }
 
     return (
-        <div className="App">
-            <Table data={data} />
-            <Pagination
-                total={total}
-                pageSize={pageSize}
-                currentPage={page}
-                onPageChange={(page) => setPage(page)}
-            />
+        <div className="pagination">
+            <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+            {pageRange.map(page => (
+                <button
+                    key={page}
+                    onClick={() => onPageChange(page)}
+                    className={currentPage === page ? 'active' : ''}
+                >
+                    {page}
+                </button>
+            ))}
+            <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
         </div>
     );
 };
 
-export default App;
+export default Pagination;

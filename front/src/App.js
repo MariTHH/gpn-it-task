@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Table from '../../front/src/components/Table';
-import Pagination from '../../front/src/components/Pagination';
-
+import Table from './components/Table';
+import Pagination from './components/Pagination';
 const App = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);

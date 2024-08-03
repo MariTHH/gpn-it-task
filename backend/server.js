@@ -3,7 +3,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
 const PORT = 8085;
-const DATA_FILE = 'data.csv';
+const DATA_FILE = 'article_def_v_orig.csv';
 
 app.use(express.json());
 app.use((req, res, next) => {
