@@ -14,7 +14,7 @@ const Table = ({ data }) => (
         </thead>
         <tbody>
         {data.map((row, index) => (
-            <tr key={index}>
+            <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
                 <td>{row.articleid}</td>
                 <td>{row.subarticleid}</td>
                 <td>{row.articlename}</td>

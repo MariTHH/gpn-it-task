@@ -64,7 +64,7 @@ RUN npm install
 # Копирование файлов фронтенда
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8085
 
 # Запуск 
 CMD ["npm", "start"]
@@ -86,7 +86,7 @@ RUN npm install
 # Копирование файлов бэкенда
 COPY . .
 
-EXPOSE 8085
+EXPOSE 3000
 
 # Запуск сервера
 CMD ["node", "server.js"]
@@ -102,13 +102,13 @@ services:
     build:
       context: ./backend
     ports:
-      - "8085:8085"
+      - "3000:3000"
 
   frontend:
     build:
       context: ./front
     ports:
-      - "3000:3000"
+      - "8085:8085"
     depends_on:
       - backend     
 ```

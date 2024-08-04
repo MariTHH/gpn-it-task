@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 th, td {
@@ -11,14 +14,18 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #5beb7a; /* Light green color for the header */
+    font-weight: 600; /* Use semi-bold font */
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+.even-row {
+    background-color: #f9f9f9; /* Keep white rows white */
+}
+
+.odd-row {
+    background-color: #dcf5df; /* Pale green for alternate rows */
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #97e3d1;
 }
