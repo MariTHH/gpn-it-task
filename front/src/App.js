@@ -8,7 +8,7 @@ const App = () => {
     const pageSize = 10;
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8085/api/data?page=${page}&pageSize=${pageSize}`)
+        fetch(`http://127.0.0.1:3000/api/data?page=${page}&pageSize=${pageSize}`)
             .then(response => response.json())
             .then(data => {
                 setData(data.data);
